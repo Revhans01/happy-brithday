@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Happy Birthday Ghyda Khaifa!</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/basiclightbox@5/dist/basicLightbox.min.css" />
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap");
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #6b21a8, #db2777);
+      min-height: 100vh;
+      color: #fff;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: transparent url('https://i.ibb.co/7QpKsCX/stars.png') repeat;
+      background-size: contain;
+      animation: twinkle 20s linear infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+    @keyframes twinkle {
+      0%, 100% {opacity: 0.8;}
+      50% {opacity: 0.4;}
+    }
+
+    .dancing-font {
+      font-family: "Dancing Script", cursive;
+    }
+
+    #surpriseOverlay {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(270deg, #6b21a8, #db2777, #f43f5e, #ec4899);
+      background-size: 800% 800%;
+      animation: gradientShift 15s ease infinite;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      text-align: center;
+      padding: 1rem;
+      user-select: none;
+      transition: opacity 0.5s ease;
+    }
+    #surpriseOverlay.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+    #surpriseOverlay h1, #surpriseOverlay p {
+      text-shadow: 0 0 15px rgba(255 255 255 / 0.9);
+    }
+    #surpriseBtn {
+      background: linear-gradient(90deg, #fbbf24, #f59e0b);
+      padding: 1.75rem 4rem;
+      font-size: 2rem;
+      border-radius: 2rem;
+      border: 5px solid rgba(255 255 255 / 0.7);
+      color: white;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 1.5rem;
+      box-shadow:
+        0 0 20px rgba(251, 191, 36, 0.9),
+        0 0 40px rgba(251, 191, 36, 0.7);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+      z-index: 10;
+      font-weight: 800;
+      font-family: "Poppins", sans-serif;
+      user-select: none;
+      outline-offset: 4px;
+    }
+    #surpriseBtn:hover,
+    #surpriseBtn:focus-visible {
+      transform: scale(1.15);
+      box-shadow:
+        0 0 30px rgba(251, 191, 36, 1),
+        0 0 60px rgba(251, 191, 36, 0.9);
+      outline: none;
+    }
+    #surpriseBtn i {
+      animation: bounceSmooth 2s infinite;
+      font-size: 3rem;
+      filter: drop-shadow(0 0 5px #fbbf24);
+    }
+    @keyframes bounceSmooth {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      opacity: 0.8;
+      pointer-events: none;
+      animation: fall linear forwards;
+      border-radius: 50%;
+      filter: drop-shadow(0 0 2px rgba(0,0,0,0.3));
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    #mainContent {
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      z-index: 10;
+      position: relative;
+      background: rgba(255 255 255 / 0.95);
+      color: #333;
+      max-width: 900px;
+      margin: 3rem auto;
+      border-radius: 1.5rem;
+      padding: 3rem 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      display: none;
+    }
+    #mainContent.show {
+      display: block;
+      opacity: 1;
+    }
+
+    .typing-text {
+      font-family: "Dancing Script", cursive;
+      font-size: 2.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid #fbbf24;
+      margin: 0 auto 1rem;
+      max-width: 100%;
+      text-align: center;
+      color: #fbbf24;
+      filter: drop-shadow(0 0 6px #fbbf24);
+      min-height: 3.5rem;
+    }
+
+    #countdown {
+      font-family: "Poppins", sans-serif;
+      font-weight: 600;
+      font-size: 1.5rem;
+      color: #db2777;
+      text-align: center;
+      margin: 0 auto 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      max-width: 400px;
+    }
+    #countdown span {
+      background: linear-gradient(135deg, #f43f5e, #ec4899);
+      padding: 0.5rem 1rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 0 10px rgba(236, 72, 153, 0.6);
+      min-width: 60px;
+      user-select: none;
+    }
+
+    .buttons-container {
+      margin-top: 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    #playMusic {
+      background-color: #ec4899;
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      box-shadow: 0 0 10px #ec4899;
+      transition: box-shadow 0.3s ease;
+      font-size: 1.125rem;
+      border: none;
+      outline: none;
+    }
+    #playMusic.playing {
+      animation: pulseGlow 2s infinite;
+      box-shadow: 0 0 25px #fbbf24;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 25px #fbbf24; }
+      50% { box-shadow: 0 0 50px #ec4899; }
+    }
+
+    #thankYouBtn {
+      background-color: #dc2626;
+      padding: 0.75rem 2rem;
+      border-radius: 9999px;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.125rem;
+      border: none;
+      outline: none;
+      box-shadow: 0 0 10px #dc2626;
+      transition: box-shadow 0.3s ease, background-color 0.3s ease;
+      user-select: none;
+    }
+    #thankYouBtn:hover {
+      background-color: #b91c1c;
+      box-shadow: 0 0 30px #b91c1c;
+    }
+
+    .birthday-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: rgba(255,255,255,0.85);
+      border-radius: 1.5rem;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.10);
+      margin: 2rem auto 3rem auto;
+      max-width: 700px;
+      overflow: hidden;
+      padding: 1.5rem 1rem;
+      gap: 1.5rem;
+    }
+    .birthday-card img {
+      width: 180px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 1rem;
+      box-shadow: 0 4px 16px rgba(236,72,153,0.15);
+      margin-bottom: 0;
+      background: #fff;
+    }
+    .birthday-card-content {
+      flex: 1;
+      background: rgba(255,255,255,0.95);
+      border-radius: 1rem;
+      padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+      color: #6b21a8;
+      box-shadow: 0 2px 8px rgba(236,72,153,0.08);
+      margin-left: 0;
+      margin-top: 1rem;
+      width: 100%;
+      max-width: 420px;
+    }
+    @media (min-width: 700px) {
+      .birthday-card {
+        flex-direction: row;
+        align-items: flex-start;
+        padding: 2.5rem 2rem;
+        gap: 2.5rem;
+      }
+      .birthday-card img {
+        margin-bottom: 0;
+        margin-right: 0;
+      }
+      .birthday-card-content {
+        margin-left: 1.5rem;
+        margin-top: 0;
+      }
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+      margin-bottom: 2rem;
+      padding: 0 0.5rem;
+    }
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.13);
+      cursor: pointer;
+      transition: transform 0.3s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
+      background: #fff;
+      min-height: 220px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+    .gallery-item:hover {
+      transform: scale(1.05) rotate(1deg);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18);
+      z-index: 10;
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 1rem 1rem 0 0;
+      transition: transform 0.3s;
+      display: block;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+    .gallery-caption {
+      position: relative;
+      background: linear-gradient(180deg, transparent, rgba(236,72,153,0.7));
+      color: #fff;
+      padding: 0.5rem 1rem 0.7rem 1rem;
+      font-family: "Dancing Script", cursive;
+      font-size: 1.15rem;
+      text-align: center;
+      border-radius: 0 0 1rem 1rem;
+      margin-top: -1.2rem;
+      z-index: 2;
+      min-height: 2.2rem;
+      box-shadow: 0 2px 8px rgba(236,72,153,0.10);
+    }
+  </style>
+</head>
+<body>
+  <div id="surpriseOverlay" role="dialog" aria-modal="true" aria-label="Surprise overlay">
+    <div class="animate-bounce text-yellow-300 mb-8 drop-shadow-lg" style="font-size: 6rem;">
+      <i class="fas fa-gift"></i>
+    </div>
+    <h1 class="dancing-font text-6xl mb-4 drop-shadow-lg">SURPRISE!</h1>
+    <p class="text-2xl mb-8 max-w-xl mx-auto drop-shadow-lg">Apaann Nihhh, Coba Buka!</p>
+    <button id="surpriseBtn" aria-label="Click to reveal birthday content" type="button">
+      <i class="fas fa-hand-point-right"></i> Buka Hadiah!
+    </button>
+  </div>
+
+  <main id="mainContent" role="main" aria-live="polite" aria-label="Birthday content" style="display:none;">
+    <div class="text-center mb-12">
+      <h1 class="dancing-font text-5xl font-bold text-pink-600 mb-4">
+        Happy Birthday
+      </h1>
+      <h2 class="text-3xl font-medium text-gray-800 mb-6">Ghyda Khaifa!</h2>
+
+      <div id="animatedMessage" class="typing-text" aria-atomic="true" aria-live="polite"></div>
+
+      <div id="countdown" aria-label="Countdown to next birthday" role="timer" aria-live="polite" aria-atomic="true">
+        <span id="days">0d</span>
+        <span id="hours">0h</span>
+        <span id="minutes">0m</span>
+        <span id="seconds">0s</span>
+      </div>
+
+      <div class="w-24 h-1 bg-pink-400 mx-auto my-6 rounded-full"></div>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        Semoga disetiap langkahmu dipenuhi dengan keberuntungan dan setiap harimu dihiasi dengan senyuman.
+      </p>
+    </div>
+
+    <div class="birthday-card">
+      <img
+        src="./images/avatar.jpeg"
+        alt="Ghyda Khaifa smiling"
+      />
+      <div class="birthday-card-content">
+        <h3 class="dancing-font text-3xl font-bold text-pink-600 mb-2">Pesan untuk Ghyda</h3>
+        <p class="italic text-lg text-purple-700 mb-2">Dear Ghyda,</p>
+        <p class="text-base text-gray-700 mb-2">Selamat ulang tahun! Semoga di usia baru ini, kamu selalu dikelilingi oleh kebahagiaan, orang-orang yang tulus, dan kesempatan-kesempatan yang membawa kebaikan.</p>
+        <p class="text-base text-gray-700 mb-2">Aku selalu kagum dengan caramu menjalani hari—tenang, bijak, dan tetap ceria walaupun banyak tantangan. Semoga semua harapan yang kamu simpan selama ini satu per satu bisa terwujud.</p>
+        <p class="text-base text-gray-700 mb-2">Jangan pernah berhenti menjadi dirimu sendiri. Tetap kuat, tetap hangat, dan tetap bersinar dengan caramu yang unik.</p>
+        <p class="dancing-font text-xl text-pink-600 mt-4">Selamat ulang tahun, Ghyda! Semoga semua harapanmu menjadi kenyataan. 🎉🎂</p>
+      </div>
+    </div>
+
+    <div>
+      <h3 class="dancing-font text-3xl text-center text-pink-600 mb-6">
+        Our Memories
+      </h3>
+      <div class="gallery" role="list">
+        <div class="gallery-item" tabindex="0" role="listitem" aria-label="Happy Moments">
+          <img
+            src="./images/gambar1.jpeg"
+            alt="Happy Moments"
+            class="gallery-img"
+          />
+          <div class="gallery-caption">Roblox Moments</div>
+        </div>
+        <div class="gallery-item" tabindex="0" role="listitem" aria-label="Special Day">
+          <img
+            src="./images/gambar2.jpeg"
+            alt="Special Day"
+            class="gallery-img"
+          />
+          <div class="gallery-caption">Roblox Moments</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="buttons-container">
+      <button id="playMusic" aria-pressed="false" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-2 rounded-full flex items-center gap-2 transition">
+        <i class="fas fa-music"></i> Play Music
+      </button>
+
+      <button id="thankYouBtn" aria-label="Jangan klik tombol ini" class="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-full font-bold text-lg shadow-lg transition transform hover:scale-110 active:scale-90 select-none">
+        Jangan Klik
+      </button>
+    </div>
+
+    <audio id="birthdaySong" loop>
+      <source src="./music/music.mp3" type="audio/mpeg" />
+    </audio>
+  </main>
+
+  <div id="confetti-container" class="fixed top-0 left-0 w-full h-full pointer-events-none z-40"></div>
+
+  <!-- Balloon Animation Container -->
+  <div id="balloon-container" class="fixed top-0 left-0 w-full h-full pointer-events-none z-50"></div>
+
+  <!-- Sound Effect for Surprise -->
+  <audio id="surpriseSound">
+    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_115b6b2b7b.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script src="https://cdn.jsdelivr.net/npm/basiclightbox@5/dist/basicLightbox.min.js"></script>
+  <script>
+    // Balloon Animation
+    function createBalloons() {
+      const balloonContainer = document.getElementById("balloon-container");
+      const colors = ["#fbbf24", "#ec4899", "#6b21a8", "#4fc3f7", "#ffd54f", "#aed581", "#f48fb1", "#ce93d8", "#90caf9"];
+      for (let i = 0; i < 25; i++) {
+        const balloon = document.createElement("div");
+        balloon.classList.add("balloon");
+        balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        balloon.style.left = Math.random() * window.innerWidth + "px";
+        balloon.style.bottom = "-60px";
+        balloon.style.width = 30 + Math.random() * 30 + "px";
+        balloon.style.height = 40 + Math.random() * 40 + "px";
+        balloon.style.borderRadius = "50% 50% 50% 50% / 60% 60% 40% 40%";
+        balloon.style.position = "absolute";
+        balloon.style.opacity = 0.85;
+        balloon.style.zIndex = 100;
+        balloon.style.animation = `riseBalloon ${4 + Math.random() * 3}s linear forwards`;
+        balloonContainer.appendChild(balloon);
+        setTimeout(() => balloon.remove(), 7000);
+      }
+    }
+
+    // Balloon Keyframes
+    const balloonStyle = document.createElement('style');
+    balloonStyle.innerHTML = `@keyframes riseBalloon { to { transform: translateY(-110vh) scale(1.1) rotate(8deg); opacity: 0.3; } } .balloon { box-shadow: 0 8px 20px rgba(0,0,0,0.13); border: 2px solid #fff3; }`;
+    document.head.appendChild(balloonStyle);
+    function createConfetti() {
+      const confettiContainer = document.getElementById("confetti-container");
+      const colors = [
+        "#f06292", "#ff8a80", "#ffd54f", "#4fc3f7",
+        "#aed581", "#f48fb1", "#ce93d8", "#90caf9",
+      ];
+
+      for (let i = 0; i < 150; i++) {
+        const confetti = document.createElement("div");
+        confetti.classList.add("confetti");
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.left = Math.random() * window.innerWidth + "px";
+        confetti.style.top = -10 + "px";
+        confetti.style.width = 5 + Math.random() * 10 + "px";
+        confetti.style.height = 5 + Math.random() * 10 + "px";
+        confetti.style.animationDuration = 3 + Math.random() * 3 + "s";
+        confetti.style.animationDelay = Math.random() * 3 + "s";
+
+        confettiContainer.appendChild(confetti);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, 6000);
+      }
+    }
+
+    const lightbox = basicLightbox.create(`
+      <img src="" alt="" style="max-width: 90vw; max-height: 90vh;" />
+    `);
+
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const imgSrc = item.querySelector('img').src;
+        lightbox.element().querySelector('img').src = imgSrc;
+        lightbox.show();
+      });
+    });
+
+    function cycleMessages(messages, element, speed = 100) {
+      let index = 0;
+      function next() {
+        typeWriter(messages[index], element, speed, () => {
+          index = (index + 1) % messages.length;
+          eraseText(element, next);
+        });
+      }
+      function typeWriter(text, el, speed, cb) {
+        let i = 0;
+        el.textContent = "";
+        function typing() {
+          if (i < text.length) {
+            el.textContent += text.charAt(i);
+            i++;
+            setTimeout(typing, speed);
+          } else if (cb) {
+            setTimeout(cb, 1500);
+          }
+        }
+        typing();
+      }
+      function eraseText(el, cb) {
+        let len = el.textContent.length;
+        function erasing() {
+          if (len > 0) {
+            el.textContent = el.textContent.substring(0, len - 1);
+            len--;
+            setTimeout(erasing, speed / 2);
+          } else {
+            cb();
+          }
+        }
+        erasing();
+      }
+      next();
+    }
+
+    function updateCountdown() {
+      const now = new Date();
+      let nextBirthday = new Date(now.getFullYear(), 6, 18);
+      if (now > nextBirthday) {
+        nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
+      }
+      const diff = nextBirthday - now;
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      document.getElementById('days').textContent = `${days}d`;
+      document.getElementById('hours').textContent = `${hours}h`;
+      document.getElementById('minutes').textContent = `${minutes}m`;
+      document.getElementById('seconds').textContent = `${seconds}s`;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const surpriseBtn = document.getElementById('surpriseBtn');
+      const surpriseOverlay = document.getElementById('surpriseOverlay');
+      const mainContent = document.getElementById('mainContent');
+      const playMusic = document.getElementById('playMusic');
+      const birthdaySong = document.getElementById('birthdaySong');
+      const thankYouBtn = document.getElementById('thankYouBtn');
+      const animatedMessage = document.getElementById('animatedMessage');
+      const surpriseSound = document.getElementById('surpriseSound');
+
+      const messages = [
+        "Selamat ulang tahun, Ghyda! Semoga hari-harimu selalu dipenuhi tawa, dan kebahagiaan.",
+        "Semoga setiap langkahmu dipenuhi dengan keberuntungan!",
+        "Owhh iyaa maaf banget yaa baru bisa ngasih kayak gini.",
+        "Sekali lagi selamat ulang tahun, tetap semangaatt dan jangan pernah berhenti bermimpi."
+      ];
+
+      surpriseBtn.addEventListener('click', () => {
+        surpriseOverlay.classList.add('fade-out');
+        setTimeout(() => {
+          surpriseOverlay.style.display = 'none';
+          mainContent.style.display = 'block';
+          mainContent.classList.add('show');
+          createConfetti();
+          createBalloons();
+          if (surpriseSound) { surpriseSound.currentTime = 0; surpriseSound.play(); }
+          cycleMessages(messages, animatedMessage);
+          updateCountdown();
+          setInterval(updateCountdown, 1000);
+        }, 500);
+      });
+
+      playMusic.addEventListener('click', () => {
+        if (birthdaySong.paused) {
+          birthdaySong.play();
+          playMusic.classList.add('playing');
+          playMusic.setAttribute('aria-pressed', 'true');
+        } else {
+          birthdaySong.pause();
+          playMusic.classList.remove('playing');
+          playMusic.setAttribute('aria-pressed', 'false');
+        }
+      });
+
+      thankYouBtn.addEventListener('click', () => {
+        const message = encodeURIComponent(
+          "Ups! lu nekat klik tombol 'Jangan Klik' ya? Terima kasih banyak karena udah repot-repot baca, masih banyak yang kurang.. maaff juga aku make avatar roblox buat fotonya wkwk..kalo gw ulang tahun lu gausah repot-repot ucapin.. STOP jadi orang gaenakan, okee!!"
+        );
+        window.open(`https://wa.me/?text=${message}`, '_blank');
+      });
+
+      if (surpriseOverlay.style.display === 'none') {
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+      }
+    });
+  </script>
+</body>
+</html>
